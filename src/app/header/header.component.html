@@ -1,0 +1,23 @@
+<div class="fluid">
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
+    <div class="container">
+      <!--<a class="navbar-brand" [routerLink]="['/home']">Welcome {{ currentUser }}</a>-->
+      <p class="text-white mb-0">Welcome {{currentUser}}</p>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-md-2">
+            <a class="nav-link btn btn-link text-white" (click)="logout()">LogOut?</a>
+          </li>
+          <!--<li class="nav-item mx-md-2">-->
+            <!--<a class=" btn btn-outline-secondary" [routerLink]="['/register']">Sign Up</a>-->
+          <!--</li>-->
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

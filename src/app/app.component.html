@@ -1,0 +1,10 @@
+<div class="fluid">
+  <div class="mb-4">
+    <app-header *ngIf="isLoggedIn()"></app-header>
+    <app-logout-header *ngIf="!isLoggedIn()"></app-logout-header>
+  </div>
+  <div style="min-height:70vh">
+    <router-outlet></router-outlet>
+  </div>
+  <!--<app-footer></app-footer>-->
+</div>

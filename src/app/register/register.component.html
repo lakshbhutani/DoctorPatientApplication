@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-6">
+      <h2 class="text-center">Sign Up For OroDoc</h2>
+      <form novalidate (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input id="name" type="text" class="form-control" name="name" [(ngModel)]="register.name" required
+                 #name="ngModel"
+                placeholder="Name">
+          <div class="feedback text-danger"
+               *ngIf="name.errors && (name.dirty || name.touched)">
+            <p *ngIf="name.errors.required">First name is required</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input id="age" type="number" class="form-control" name="age" [(ngModel)]="register.age" required
+                 #age="ngModel"
+                 placeholder="Age">
+          <div class="feedback text-danger"
+               *ngIf="age.errors && (age.dirty || age.touched)">
+            <p *ngIf="age.errors.required">Age is required</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" class="form-control" name="email" [(ngModel)]="register.email"
+                 required
+                 pattern="[^ @]*@[^ @]*"
+                 #email="ngModel"
+                 placeholder="Email">
+          <div class="feedback text-danger"
+               *ngIf="email.errors && (email.dirty || email.touched)">
+            <p *ngIf="email.errors.required">Email is required</p>
+            <p *ngIf="email.errors.pattern">Not a valid email</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="username">User Name</label>
+          <input id="username" type="text" class="form-control" name="userName" [(ngModel)]="register.user_name"
+                 required
+                 #userName="ngModel"
+                 placeholder="Username">
+          <div class="feedback text-danger"
+               *ngIf="userName.errors && (userName.dirty || userName.touched)">
+            <p *ngIf="userName.errors.required">UserName is required</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input id="password" type="password" class="form-control" name="password" [(ngModel)]="register.password"
+                 required
+                 minlength="8"
+                 pattern="^(?=\S*[a-z])(?=\S*[A-Z])(?=\S*\d)(?=\S*[^\w\s])\S{8,}$"
+                 #password="ngModel"
+                 placeholder="Password">
+          <div class="feedback text-danger"
+               *ngIf="password.errors && (password.dirty || password.touched)">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">Password must be at least 8 characters long</div>
+            <div *ngIf="password.errors.pattern">Password must have one caps, one small and one special character</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select name="roleDropDown" id="role" class="form-control" [(ngModel)]="register.role" required>
+            <option value=0 disabled selected>Please Select The Option</option>
+            <option *ngFor="let role of roleValues"
+                    [value]="role.id">{{role.name}}</option>
+          </select>
+        </div>
+
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary my-2 mr-2" [disabled]="f.invalid || loading || register.role==0">Sign Up</button>
+          <img *ngIf="loading"
+               src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

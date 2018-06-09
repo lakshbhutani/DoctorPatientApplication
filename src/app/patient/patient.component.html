@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row justify-content-center my-4">
+    <h1>Welcome To Patient Portal</h1>
+  </div>
+  <div *ngIf="showRequestsOnMeTable" class="row justify-content-center my-4">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Age</th>
+          <th scope="col">Role</th>
+          <th scope="col">Approve/Deny</th>
+          <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let responseRequestObject of requestsOnMeList;let i=index;">
+          <th scope="row">{{i+1}}</th>
+          <td>{{responseRequestObject.requested_by.name}}</td>
+          <td>{{responseRequestObject.requested_by.email}}</td>
+          <td>{{responseRequestObject.requested_by.age}}</td>
+          <td *ngIf="responseRequestObject.requested_by.role==2">Doctor</td>
+          <td *ngIf="responseRequestObject.requested_by.role==3">Pharmacist</td>
+          <td>
+            <button class="btn btn-success btn-sm d-inline-block mr-3"
+                    data-toggle="modal" data-target="#exampleModal">
+              <i class="far fa-check-circle mr-1"></i>Approve
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Approve Profile Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to Approve?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"
+                            data-dismiss="modal"
+                            (click)="approveOrDenyProfileAccess(responseRequestObject.id,'approved')">Yes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-danger btn-sm d-inline-block"
+                    data-toggle="modal" data-target="#exampleModal1">
+              <i class="far fa-times-circle mr-1"></i>Deny
+            </button>
+            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Approve Profile Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to Deny?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"
+                            data-dismiss="modal"
+                            (click)="approveOrDenyProfileAccess(responseRequestObject.id,'denied')">Yes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>{{responseRequestObject.status}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+<app-patient *ngIf="role===1" ></app-patient>
+<app-doctor *ngIf="role===2" [role]="1"></app-doctor>
+<app-pharmacist *ngIf="role===3" [role]="1"></app-pharmacist>

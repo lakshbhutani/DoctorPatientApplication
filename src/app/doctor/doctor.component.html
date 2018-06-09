@@ -1,0 +1,60 @@
+<div class="container">
+  <div *ngIf="!throughPharmacistComponent"
+        class="row justify-content-center my-4">
+    <h1>Welcome To Doctors Portal</h1>
+  </div>
+  <div class="row justify-content-center my-5" *ngIf="listRendered">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <caption>List of Patients</caption>
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Patient Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Age</th>
+          <th scope="col">Created At</th>
+          <th scope="col">See Profile</th>
+          <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  *ngFor="let patient of patientList;let i=index;">
+          <th scope="row">{{i+1}}</th>
+          <td>{{patient.name}}</td>
+          <td>{{patient.email}}</td>
+          <td>{{patient.age}}</td>
+          <td>{{patient.createdAt | date: 'medium'}}</td>
+          <td><button class="btn btn-primary"
+                      data-toggle="modal" data-target="#exampleModal"
+                      (click)="requestPatientAccess(patient)"
+                      [disabled]="checkStatus(patient)">Request Access</button></td>
+          <td>{{ getPatientStatus(patient) }}</td>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Request Profile Access</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to request profile access?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary"
+                          data-dismiss="modal"
+                          (click)="confirmPatientAccess()">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
